@@ -12,24 +12,44 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
+    /* Reset y fuentes */
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
     body { background:#fff; color:#000; line-height:1.6; scroll-behavior:smooth; }
     a { text-decoration:none; color:inherit; }
     img { max-width:100%; height:auto; }
 
     /* Header */
-    header { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background:#fff; position:sticky; top:0; border-bottom:1px solid #ddd; z-index:100; transition:0.3s; }
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 10%;
+      background:#fff;
+      position:sticky;
+      top:0;
+      border-bottom:1px solid #ddd;
+      z-index:100;
+      transition:0.3s;
+    }
     .logo img { height:60px; }
     nav a { margin-left:30px; font-weight:500; color:#2372a3; transition:0.3s; }
     nav a:hover { color:#ffdb4a; }
 
     /* Hero */
-    .hero { text-align:center; padding:120px 10% 100px 10%; background:#2372a3; color:#fff; position:relative; overflow:hidden; }
+    .hero {
+      text-align:center;
+      padding:120px 10% 100px 10%;
+      background:#2372a3;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
     .hero h1 { font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:20px; animation:fadeInDown 1s ease forwards; opacity:0; }
     .hero p { font-size:1.5rem; margin-bottom:30px; animation:fadeInUp 1s ease 0.5s forwards; opacity:0; }
     .hero .btn { background:#ffdb4a; color:#000; padding:15px 30px; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1.2rem; transition:0.3s; animation:fadeInUp 1s ease 1s forwards; opacity:0; }
     .hero .btn:hover { background:#e6c53e; }
 
+    /* Animaciones Hero */
     @keyframes fadeInDown { from {opacity:0; transform:translateY(-40px);} to {opacity:1; transform:translateY(0);} }
     @keyframes fadeInUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
 
@@ -51,10 +71,12 @@
     .testimonial { background:#ffdb4a; padding:30px 40px; border-radius:20px; max-width:800px; margin:30px auto; text-align:center; font-style:italic; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
     .testimonial p { margin-bottom:15px; }
 
-    /* Contacto simplificado */
-    .contacto { text-align:center; }
-    .contacto a { display:inline-block; background:#ffdb4a; color:#000; padding:15px 30px; border-radius:12px; font-weight:bold; font-size:1.2rem; transition:0.3s; margin-bottom:20px; }
-    .contacto a:hover { background:#e6c53e; }
+    /* Contacto */
+    .contacto form { max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+    .contacto input, .contacto textarea { padding:15px; border:1px solid #ddd; border-radius:12px; font-size:1rem; width:100%; transition:0.3s; }
+    .contacto input:focus, .contacto textarea:focus { border-color:#2372a3; outline:none; }
+    .contacto button { background:#ffdb4a; border:none; padding:15px; border-radius:12px; font-size:1.1rem; font-weight:bold; cursor:pointer; transition:0.3s; }
+    .contacto button:hover { background:#e6c53e; }
 
     /* Footer */
     footer { background:#000; color:#fff; text-align:center; padding:30px 10%; }
@@ -62,7 +84,30 @@
     footer a:hover { color:#fff; }
 
     /* Responsive */
-    @media(max-width:768px) { .grid { grid-template-columns:1fr; } header { flex-direction:column; gap:15px; } }
+    @media(max-width:1024px) {
+      .hero h1 { font-size:2.5rem; }
+      .hero p { font-size:1.3rem; }
+      .hero .btn { font-size:1.1rem; padding:14px 28px; }
+      section { padding:70px 8%; }
+    }
+
+    @media(max-width:768px) {
+      .grid { grid-template-columns:1fr; }
+      header { flex-direction:column; gap:15px; }
+      nav a { margin-left:0; margin-top:10px; font-size:0.95rem; }
+      .hero { padding:80px 5% 60px 5%; }
+      .hero h1 { font-size:2rem; }
+      .hero p { font-size:1.2rem; }
+      .hero .btn { font-size:1rem; padding:12px 20px; }
+      section { padding:60px 5%; }
+    }
+
+    @media(max-width:480px) {
+      .hero h1 { font-size:1.6rem; }
+      .hero p { font-size:1rem; }
+      .hero .btn { font-size:0.95rem; padding:10px 18px; }
+      section { padding:50px 5%; }
+    }
   </style>
 </head>
 <body>
@@ -78,7 +123,7 @@
       <a href="#mision-vision">Misión & Visión</a>
       <a href="#problemas">Problemas</a>
       <a href="#solucion">Solución</a>
-      <a href="#contacto">Registro</a>
+      <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
@@ -166,11 +211,16 @@
     <p>"Un espacio transformador donde conectas con personas increíbles y descubres tu mejor versión."</p>
   </section>
 
-  <!-- Contacto / Registro -->
+  <!-- Contacto -->
   <section class="contacto" id="contacto" data-aos="fade-up">
-    <h2>Registro</h2>
-    <a href="https://forms.gle/132ronj7wu3hnbhe8" target="_blank">Registrarme Ahora</a>
-    <p style="margin-top:20px;">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo" required>
+      <textarea rows="5" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p style="text-align:center; margin-top:20px;">
       Síguenos en: 
       <a href="https://www.tiktok.com/@movimientodejandohuella?_t=ZS-90kRZLuHXnR&_r=1" target="_blank">TikTok</a> | 
       <a href="https://www.facebook.com/share/16eREWm8Ww/?mibextid=wwXIfr" target="_blank">Facebook</a> | 
@@ -191,4 +241,5 @@
 
 </body>
 </html>
+
 
