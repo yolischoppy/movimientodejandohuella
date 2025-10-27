@@ -3,216 +3,209 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Movimiento Dejando Huella - Conectando personas, transformando vidas.">
   <title>Movimiento Dejando Huella</title>
-  
-  <!-- Favicon -->
+
+  <meta name="description" content="Movimiento Dejando Huella - Conectando personas, transformando vidas. Un espacio para el crecimiento personal, emocional y espiritual.">
   <link rel="icon" href="https://raw.githubusercontent.com/yolischoppy/movimientodejandohuella/main/LOGO.png">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
-  <!-- Iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    /* ==== ESTILOS GLOBALES ==== */
-    :root {
-      --azul: #2372a3;
-      --amarillo: #ffdb4a;
-      --negro: #000;
-      --blanco: #fff;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+    body { background: #ffffff; color: #000000; line-height: 1.6; scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Header */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: #fff; position: sticky; top: 0; border-bottom: 1px solid #ddd; z-index: 100; }
+    .logo img { height: 60px; }
+    nav a { margin-left: 25px; font-weight: 500; color: #2372a3; transition: 0.3s; }
+    nav a:hover { color: #ffdb4a; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--blanco);
-      color: var(--negro);
-    }
+    /* Hero */
+    .hero { text-align: center; padding: 120px 10% 100px; background: #2372a3; color: #fff; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; animation: fadeInDown 1s ease forwards; opacity: 0; }
+    .hero p { font-size: 1.5rem; margin-bottom: 30px; animation: fadeInUp 1s ease 0.5s forwards; opacity: 0; }
+    .hero .btn { background: #ffdb4a; color: #000; padding: 15px 30px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.2rem; transition: 0.3s; animation: fadeInUp 1s ease 1s forwards; opacity: 0; }
+    .hero .btn:hover { background: #e6c53e; }
 
-    header {
-      background-color: var(--azul);
-      color: var(--blanco);
-      text-align: center;
-      padding: 40px 20px;
-    }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-    header img {
-      width: 150px;
-      height: auto;
-      margin-bottom: 10px;
-    }
+    /* Secciones */
+    section { padding: 80px 10%; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; text-align: center; color: #2372a3; }
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2em;
-      margin-bottom: 5px;
-    }
+    .sobre p, .mision-vision p { max-width: 900px; margin: 0 auto 20px auto; text-align: center; font-size: 1.1rem; }
 
-    header p {
-      font-size: 1.1em;
-      color: var(--amarillo);
-      letter-spacing: 1px;
-    }
+    .grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card { background: #f5f5f5; padding: 25px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+    .card h3 { color: #2372a3; margin-bottom: 15px; }
+    .card ul { padding-left: 20px; list-style: disc; }
 
-    /* ==== SECCIÓN PRINCIPAL ==== */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background-color: var(--azul);
-      color: var(--blanco);
-      height: 100vh;
-      padding: 0 20px;
-    }
+    .testimonial { background: #ffdb4a; padding: 30px 40px; border-radius: 20px; max-width: 800px; margin: 30px auto; text-align: center; font-style: italic; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .testimonial p { margin-bottom: 15px; }
 
-    .hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5em;
-      margin-bottom: 15px;
-    }
+    /* Contacto */
+    .contacto form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .contacto input, .contacto textarea { padding: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 1rem; width: 100%; transition: 0.3s; }
+    .contacto input:focus, .contacto textarea:focus { border-color: #2372a3; outline: none; }
+    .contacto button { background: #ffdb4a; border: none; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .contacto button:hover { background: #e6c53e; }
 
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 25px;
-      max-width: 600px;
-    }
+    footer { background: #000; color: #fff; text-align: center; padding: 30px 10%; }
+    footer a { color: #ffdb4a; margin: 0 10px; font-size: 1.5rem; transition: 0.3s; }
+    footer a:hover { color: #fff; }
 
-    .hero a {
-      background-color: var(--amarillo);
-      color: var(--negro);
-      padding: 12px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .hero a:hover {
-      background-color: #ffd700;
-      transform: scale(1.05);
-    }
-
-    /* ==== VISIÓN Y MISIÓN ==== */
-    section {
-      padding: 60px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    section h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--azul);
-      font-size: 2em;
-      margin-bottom: 15px;
-    }
-
-    section p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    /* ==== REDES SOCIALES ==== */
-    .social {
-      background-color: var(--azul);
-      color: var(--blanco);
-      padding: 30px 0;
-      text-align: center;
-    }
-
-    .social h4 {
-      margin-bottom: 15px;
-      font-size: 1.5em;
-    }
-
-    .social a {
-      color: var(--blanco);
-      margin: 0 10px;
-      font-size: 1.8em;
-      transition: 0.3s;
-    }
-
-    .social a:hover {
-      color: var(--amarillo);
-    }
-
-    /* ==== FOOTER ==== */
-    footer {
-      background-color: var(--negro);
-      color: var(--blanco);
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 0.9em;
-    }
-
-    /* ==== RESPONSIVE ==== */
+    /* Responsive */
     @media (max-width: 768px) {
-      header img {
-        width: 120px;
-      }
-
-      .hero h2 {
-        font-size: 2em;
-      }
-
-      section h3 {
-        font-size: 1.6em;
-      }
+      header { flex-direction: column; gap: 10px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1.2rem; }
+      .hero .btn { font-size: 1rem; padding: 12px 25px; }
+      h2 { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ENCABEZADO -->
+  <!-- Header -->
   <header>
-    <img src="https://raw.githubusercontent.com/yolischoppy/movimientodejandohuella/main/LOGO.png" alt="Logo Movimiento Dejando Huella">
-    <h1>Movimiento Dejando Huella</h1>
-    <p>Conectando personas, transformando vidas</p>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/yolischoppy/movimientodejandohuella/main/LOGO.png" alt="Movimiento Dejando Huella" />
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre">Sobre Nosotros</a>
+      <a href="#mision-vision">Misión & Visión</a>
+      <a href="#problemas">Problemas</a>
+      <a href="#solucion">Solución</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </header>
 
-  <!-- SECCIÓN PRINCIPAL -->
-  <div class="hero">
-    <h2>Bienvenido al Movimiento Dejando Huella</h2>
-    <p>Un espacio para el crecimiento personal, emocional y espiritual, donde cada historia deja una huella positiva en el mundo.</p>
-    <a href="https://forms.gle/132ronj7wu3hnbhe8" target="_blank">Descubre más</a>
-  </div>
-
-  <!-- VISIÓN -->
-  <section>
-    <h3>Visión</h3>
-    <p>Ser un movimiento referente en transformación personal, emocional y espiritual, impulsando una red de personas conscientes, empáticas y comprometidas con dejar una huella positiva en su entorno.</p>
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <h1 data-aos="fade-down">DEJANDO HUELLA</h1>
+    <p data-aos="fade-up" data-aos-delay="200">Conectando personas, transformando vidas</p>
+    <a href="https://forms.gle/132ronj7wu3hnbhe8" target="_blank">
+      <button class="btn" data-aos="fade-up" data-aos-delay="400">Descubre más</button>
+    </a>
   </section>
 
-  <!-- MISIÓN -->
-  <section>
-    <h3>Misión</h3>
-    <p>Inspirar, acompañar y empoderar a las personas en su camino de desarrollo integral, fomentando la conexión con su propósito, el amor propio y la espiritualidad consciente.</p>
+  <!-- Sobre Nosotros -->
+  <section class="sobre" id="sobre" data-aos="fade-up">
+    <h2>Sobre Movimiento Dejando Huella</h2>
+    <p>
+      Movimiento Dejando Huella es un movimiento híbrido (presencial y digital) que propone una nueva manera de vivir con conciencia, propósito y conexión humana real. 
+      Fundado por Yolanda Cely en Bogotá, Colombia, julio 2025.
+    </p>
   </section>
 
-  <!-- REDES SOCIALES -->
-  <div class="social">
-    <h4>Síguenos en nuestras redes</h4>
-    <a href="https://www.facebook.com/share/16eREWm8Ww/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.instagram.com/movimientodejandohuellaoficial" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@movimientodejandohuella" target="_blank"><i class="fab fa-tiktok"></i></a>
-  </div>
+  <!-- Misión y Visión -->
+  <section class="mision-vision" id="mision-vision" data-aos="fade-up">
+    <h2>Misión y Visión</h2>
+    <p><strong>Misión:</strong> Inspirar, acompañar y empoderar a personas en su proceso de transformación personal, integrando cuerpo, mente, espíritu y comunidad.</p>
+    <p><strong>Visión:</strong> Ser una comunidad transformadora reconocida en América Latina que, para 2030, impacte positivamente la vida de más de 100.000 personas.</p>
+  </section>
 
-  <!-- PIE DE PÁGINA -->
+  <!-- Problemas -->
+  <section id="problemas">
+    <h2 data-aos="fade-up">Problemas y Necesidades</h2>
+    <div class="grid">
+      <div class="card" data-aos="fade-right">
+        <h3>Soledad y desconexión</h3>
+        <ul>
+          <li>Falta de vínculos humanos reales</li>
+          <li>Estancamiento emocional y pérdida de dirección personal</li>
+          <li>Ausencia de hábitos saludables</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="fade-left">
+        <h3>Desconexión espiritual</h3>
+        <ul>
+          <li>Sensación de vacío interno</li>
+          <li>Baja motivación y desánimo</li>
+          <li>Falta de espacios seguros para la expresión emocional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solución -->
+  <section id="solucion">
+    <h2 data-aos="fade-up">Solución Integral</h2>
+    <div class="grid">
+      <div class="card" data-aos="zoom-in">
+        <h3>Contenido Original</h3>
+        <ul>
+          <li>La Travesía del Renacer (10 pasos)</li>
+          <li>Manifiesto Defiende tu Fuego</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200">
+        <h3>Experiencias Vivenciales</h3>
+        <ul>
+          <li>Círculos psicoemocionales</li>
+          <li>Coaching de liderazgo consciente</li>
+          <li>Club de lectura y deporte al aire libre</li>
+          <li>Excursiones y campamentos</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="400">
+        <h3>Comunidad Activa</h3>
+        <ul>
+          <li>Mentorías personalizadas</li>
+          <li>Reto de las 100 amistades genuinas</li>
+          <li>Red de apoyo y encuentros abiertos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="testimonial" data-aos="fade-up">
+    <h2>Testimonios</h2>
+    <p>"Gracias a Movimiento Dejando Huella encontré mi propósito y la motivación para seguir creciendo."</p>
+    <p>"Un espacio transformador donde conectas con personas increíbles y descubres tu mejor versión."</p>
+  </section>
+
+  <!-- Contacto -->
+  <section class="contacto" id="contacto" data-aos="fade-up">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required />
+      <input type="email" placeholder="Correo" required />
+      <textarea rows="5" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div style="text-align:center; margin-top:20px;">
+      <p>Síguenos en:</p>
+      <a href="https://www.tiktok.com/@movimientodejandohuella" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/16eREWm8Ww/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/movimientodejandohuellaoficial" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    © 2025 Movimiento Dejando Huella | Todos los derechos reservados
+    <p>&copy; 2025 Movimiento Dejando Huella. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 
 </body>
 </html>
-
 
