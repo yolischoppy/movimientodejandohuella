@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dejando Huella | Movimiento de Transformación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #1e2a3a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* HEADER BLANCO */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo-img {
+            height: 70px;
+            width: auto;
+        }
+        .nav a {
+            color: #1e2a3a;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            color: #d4a528;
+        }
+        .btn-primary {
+            background-color: #d4a528;
+            color: #1e2a3a;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background-color: #c49a1a;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #d4a528;
+            border: 2px solid #d4a528;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #d4a528;
+            color: #1e2a3a;
+        }
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 16px 40px;
+        }
+        section {
+            padding: 100px 0;
+        }
+        .section-dark {
+            background-color: #f8f9fa;
+        }
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #1e2a3a;
+            text-align: center;
+        }
+        h2 span {
+            color: #d4a528;
+        }
+        h3 {
+            font-size: 1.6rem;
+            margin: 20px 0 15px;
+            color: #1e2a3a;
+        }
+        .subtitulo {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        .card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: #d4a528;
+            margin-bottom: 20px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1e2a3a 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        .hero .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .quienes-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+        .quienes-texto {
+            flex: 1;
+        }
+        .quienes-texto p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        .quienes-imagen {
+            flex: 1;
+            text-align: center;
+        }
+        .quienes-imagen img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .mision-vision {
+            display: flex;
+            gap: 50px;
+            margin-top: 70px;
+        }
+        .mision, .vision {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 40px 35px;
+            border-radius: 25px;
+            text-align: center;
+        }
+        .testimonios {
+            background-color: #1e2a3a;
+            color: white;
+        }
+        .testimonios h2 {
+            color: white;
+        }
+        .testimonio-card {
+            background: rgba(255,255,255,0.08);
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+        }
+        .testimonio-card:hover {
+            background: rgba(255,255,255,0.12);
+        }
+        .testimonio-card .avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid #d4a528;
+        }
+        .estrellas {
+            color: #d4a528;
+            margin-top: 15px;
+        }
+        .pasos .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        /* SECCIÓN REDES SOCIALES */
+        .redes-sociales {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        .redes-sociales h2 {
+            margin-bottom: 40px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: inline-block;
+            font-size: 4rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+        .social-icons .fa-instagram { color: #E4405F; }
+        .social-icons .fa-facebook-f { color: #1877F2; }
+        .social-icons .fa-tiktok { color: #000000; }
+        .social-icons a:hover .fa-instagram { color: #c13584; }
+        .social-icons a:hover .fa-facebook-f { color: #0e5a9c; }
+        .social-icons a:hover .fa-tiktok { color: #25f4ee; }
+        footer {
+            background-color: #1e2a3a;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .footer-logo {
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .footer-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 992px) {
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .quienes-container, .mision-vision { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .header .container { flex-direction: column; gap: 15px; text-align: center; }
+            .nav a { margin: 0 12px; }
+            .hero h1 { font-size: 2.2rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            section { padding: 60px 0; }
+            h2 { font-size: 2rem; }
+            .social-icons { gap: 40px; }
+            .social-icons a { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER BLANCO -->
+    <header class="header">
+        <div class="container">
+            <img src="1038.webp" alt="Dejando Huella" class="logo-img">
+            <div class="nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#problema">Problema</a>
+                <a href="#solucion">Solución</a>
+                <a href="#quienes-somos">Quiénes Somos</a>
+                <a href="#herramientas">Herramientas</a>
+                <a href="#testimonios">Testimonios</a>
+                <a href="#redes">Redes</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>DEJANDO HUELLA</h1>
+            <div class="tagline">Conectando personas, transformando vidas</div>
+            <p>Un movimiento híbrido (presencial y digital) con herramientas prácticas, comunidad real y retos que transforman tu constancia en hábito.</p>
+            <a href="https://dejandohuella-streak.lovable.app" class="btn-primary btn-large" target="_blank">🔥 COMENZAR RETO GRATIS (7 DÍAS)</a>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section id="problema">
+        <div class="container">
+            <h2>¿Te sientes en <span>piloto automático</span>?</h2>
+            <div class="subtitulo">Identifica lo que te frena para poder avanzar con claridad</div>
+            <div class="grid-4">
+                <div class="card"><i class="fas fa-chart-line"></i><h3>Rutina sin sentido</h3><p>Días que se repiten sin avance real. Sabes que puedes más, pero te falta dirección.</p></div>
+                <div class="card"><i class="fas fa-battery-quarter"></i><h3>Energía drenada</h3><p>Cansancio mental, falta de motivación, ganas de cambiar pero sin estructura.</p></div>
+                <div class="card"><i class="fas fa-users-slash"></i><h3>Soledad disfrazada</h3><p>Estás rodeado de gente, pero sientes que nadie camina a tu ritmo.</p></div>
+                <div class="card"><i class="fas fa-compass"></i><h3>Falta de propósito</h3><p>Sabes que hay algo más dentro de ti, pero no encuentras cómo despertarlo.</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;"><a href="https://dejandohuella-streak.lovable.app" class="btn-primary" target="_blank">👉 EMPIEZA A CAMBIAR HOY</a></div>
+        </div>
+    </section>
+
+    <!-- SOLUCIÓN -->
+    <section id="solucion" class="section-dark">
+        <div class="container">
+            <h2>La <span>Solución</span> que estabas buscando</h2>
+            <div class="subtitulo">No es solo información. Es acción, comunidad y transformación real.</div>
+            <div class="grid-4">
+                <div class="card"><i class="fas fa-tasks"></i><h3>Herramientas prácticas</h3><p>Retos diarios, 4 cuadrantes de acción, libros y sistemas que te dan estructura.</p></div>
+                <div class="card"><i class="fas fa-handshake"></i><h3>Comunidad real</h3><p>Personas como tú que caminan juntas, comparten aprendizajes y se sostienen.</p></div>
+                <div class="card"><i class="fas fa-bullseye"></i><h3>Enfoque y constancia</h3><p>Un sistema que convierte tu esfuerzo en hábitos duraderos.</p></div>
+                <div class="card"><i class="fas fa-fire"></i><h3>Propósito en acción</h3><p>Dejas de sobrevivir y empiezas a liderar tu vida con dirección y energía.</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;"><a href="https://dejandohuellaoficial.lovable.app" class="btn-primary btn-large" target="_blank">📦 COMPRAR PACK COMPLETO ($47 USD)</a></div>
+        </div>
+    </section>
+
+    <!-- QUIÉNES SOMOS (sin información de fundación) -->
+    <section id="quienes-somos">
+        <div class="container">
+            <h2>Quiénes <span>Somos</span></h2>
+            <div class="quienes-container">
+                <div class="quienes-texto">
+                    <p><strong>Movimiento Dejando Huella</strong> es un movimiento híbrido (presencial y digital) que propone una nueva manera de vivir con conciencia, propósito y conexión humana real.</p>
+                    <p style="margin-top: 20px;">No somos un curso más. Somos una red de personas que deciden despertar, liderar su vida y dejar huella en el mundo.</p>
+                </div>
+                <div class="quienes-imagen">
+                    <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Comunidad Dejando Huella">
+                </div>
+            </div>
+            <div class="mision-vision">
+                <div class="mision"><i class="fas fa-star"></i><h3>Misión</h3><p>Inspirar, acompañar y empoderar a personas en su proceso de transformación personal, facilitando experiencias que integren el cuerpo, la mente, el espíritu y la comunidad. Promovemos vínculos humanos auténticos, hábitos saludables y una vida con propósito que deje huella en el mundo.</p></div>
+                <div class="vision"><i class="fas fa-eye"></i><h3>Visión</h3><p>Ser una comunidad transformadora reconocida en América Latina que impacte positivamente la vida de miles de personas, convirtiéndose en un referente de reconexión humana, liderazgo consciente y transformación social desde la autenticidad y el servicio.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section id="herramientas" class="section-dark">
+        <div class="container">
+            <h2>Nuestras <span>Herramientas</span></h2>
+            <div class="subtitulo">Contenido original, retos y comunidad para tu transformación</div>
+            <div class="grid-3">
+                <div class="card"><i class="fas fa-mobile-alt"></i><h3>PODER DIARIO</h3><p>App gratuita. Reto de 7 días + Reto de 21 días con 4 cuadrantes diarios.</p><a href="https://dejandohuella-streak.lovable.app" class="btn-secondary" target="_blank">Probar gratis →</a></div>
+                <div class="card"><i class="fas fa-book-open"></i><h3>DEFIENDE TU FUEGO</h3><p>Manifiesto de 10 capítulos para reconectar con tu energía vital y sostener tu propósito.</p></div>
+                <div class="card"><i class="fas fa-seedling"></i><h3>TRAVESÍA DEL RENACER</h3><p>Cuaderno de 10 pasos: diagnóstico, recursos, obstáculos, hábitos y plan de acción.</p></div>
+                <div class="card"><i class="fas fa-chart-line"></i><h3>ACTIVO INVALUABLE</h3><p>E-book con un sistema para gestionar tu vida como un proyecto consciente, rentable y sostenible.</p></div>
+                <div class="card"><i class="fas fa-users"></i><h3>RETO 100 AMIGOS</h3><p>Activa a 100 personas afines. Quienes lo logran acceden al Ecosistema de Ingresos Exclusivo.</p><a href="https://dejandohuella-streak.lovable.app" class="btn-secondary" target="_blank">Conocer el Reto →</a></div>
+                <div class="card"><i class="fas fa-tree"></i><h3>COMUNIDAD Y EVENTOS</h3><p>Círculos emocionales, club de lectura, mentorías, campamentos y encuentros presenciales.</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;"><a href="https://dejandohuellaoficial.lovable.app" class="btn-primary" target="_blank">📦 ADQUIRIR PACK COMPLETO ($47 USD)</a></div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="testimonios">
+        <div class="container">
+            <h2>Historias de <span>Transformación</span></h2>
+            <div class="subtitulo" style="color: #ccc;">Personas que ya están dejando huella</div>
+            <div class="grid-2">
+                <div class="testimonio-card"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="avatar"><i class="fas fa-quote-left"></i><p>"Antes vivía en automático, sin propósito. Hoy tengo claridad, constancia y una comunidad que me impulsa. Dejando Huella me enseñó a liderar mi vida."</p><p><strong>— Ana M., Bogotá</strong></p><div class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonio-card"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar"><i class="fas fa-quote-left"></i><p>"El Reto 100 Amigos me conectó con personas increíbles. Pasé de sentirme solo a construir una red de apoyo genuina que transformó mi vida personal y profesional."</p><p><strong>— Carlos R., México</strong></p><div class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonio-card"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="avatar"><i class="fas fa-quote-left"></i><p>"Poder Diario me ayudó a crear hábitos que antes creía imposibles. 15 minutos al día cambiaron mi energía, mi enfoque y mis resultados."</p><p><strong>— Laura G., Madrid</strong></p><div class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonio-card"><img src="https://randomuser.me/api/portraits/men/75.jpg" class="avatar"><i class="fas fa-quote-left"></i><p>"Encontrar un movimiento que une propósito, comunidad y acción real es difícil. Dejando Huella lo logró. Hoy lidero desde mi verdad y con personas que suman."</p><p><strong>— Andrés F., Buenos Aires</strong></p><div class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASOS -->
+    <section id="pasos" class="pasos">
+        <div class="container">
+            <h2>Empieza <span>hoy</span></h2>
+            <div class="subtitulo">Tres pasos para transformar tu vida</div>
+            <div class="grid-3">
+                <div class="card"><i class="fas fa-fire"></i><h3>Paso 1: Gratis</h3><p>Entra a PODER DIARIO y haz el reto de 7 días. Sin costo, sin compromiso.</p><a href="https://dejandohuella-streak.lovable.app" class="btn-primary" target="_blank">COMENZAR RETO GRATIS</a></div>
+                <div class="card"><i class="fas fa-box-open"></i><h3>Paso 2: Profundiza</h3><p>Adquiere el pack completo con los 4 libros + acceso a comunidad exclusiva.</p><a href="https://dejandohuellaoficial.lovable.app" class="btn-primary" target="_blank">COMPRAR PACK $47</a></div>
+                <div class="card"><i class="fas fa-hand-holding-heart"></i><h3>Paso 3: Lidera</h3><p>Activa a 100 personas y accede al Ecosistema de Ingresos Exclusivo.</p><a href="https://dejandohuella-streak.lovable.app" class="btn-secondary" target="_blank">CONOCER RETO 100</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REDES SOCIALES -->
+    <section id="redes" class="redes-sociales">
+        <div class="container">
+            <h2>Síguenos en <span>redes</span></h2>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/movimientodejandohuellaoficial" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/movimientodejandohuella" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@movimientodejandohuella" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER con información de fundación -->
+    <footer>
+        <div class="container">
+            <img src="1038.webp" alt=  "Movimiento Dejando Huella" class="footer-logo
+
+      <p class="footer-info"> Fundado por Yolanda Cely en Bogotá, Colombia · Junio 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
